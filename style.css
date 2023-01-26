@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Sofia Sans', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    /* 1rem=10px */
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+header {
+    padding: 0 5rem;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+
+
+.navbar-list {
+    display: flex;
+
+    /* this will not work b/w .navbar-list takes only that much space that it fit in the box
+    justify-content: space-between; */
+    gap: 4.8rem;
+    list-style: none;
+}
+
+
+.header .logo {
+    height: 4rem;
+}
+
+.navbar-link:link,
+.navbar-link:visited {
+    /* use inline block so we can use padding margin height width properties */
+    display: inline-block;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #87CEFA;
+    transition: all 0.3s;
+}
+
+.navbar-link:hover,
+.navbar-link:active {
+    color: #299de5;
+}
+
+.mobile-navbar-btn {
+    display: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+.mobile-nav-icon {
+    /* icon ka height width dono dena hota hao */
+    width: 4rem;
+    height: 4rem;
+    color: #299de5;
+}
+
+.mobile-nav-icon[name="close-outline"] {
+    display: none;
+}
+
+.text {
+    height: 30rem;
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+
+
+}
+
+@media(max-width : 62em) {
+    
+    .mobile-navbar-btn {
+        display: block;
+        z-index: 999;
+        /* border: 3px solid #299de5; */
+    }
+
+    .header {
+        position: relative;
+    }
+
+    .navbar {
+        /* display: none; */
+        width: 100%;
+        height: 100vh;
+        background-color: aliceblue;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        /* 
+        right side bhejne ke liye 
+        */
+
+        transform: translateX(100%);
+        transition: all .5s linear;
+
+        /* 
+        visibility hidden karne se woh part hide ho jaata hai phar wahi rehta hai chahe dikhe ya na 
+        display none karne se woh part hide toh hota hi hai sath hi sath apna space bhi chor deta hai 
+         */
+
+        visibility: hidden;
+
+
+        /*
+         opacity: DEFINE THE TRANPARENCY (0=FULL TRANSPARENT 1=FULL VISIBLITY)
+        POINTER EVENT : NONE (U CANNOT CHOOSE THESE TAGS) 
+        */
+
+        opacity: 0;
+        pointer-events: none;
+
+    }
+
+    /* 
+    .header .logo{
+        width: 50%;
+    } */
+
+    .navbar-list {
+        /* 
+        remember here u can use this property because original .navbar-list is flex 
+        aur upar neeche space hai kyuki gap property applied hai
+        */
+
+
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+
+    /* AFTER ACTIVE CLASS IS PRESENT */
+
+    .active .navbar {
+    
+        transform: translateX(0);
+
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+
+    }
+
+    
+    .active .mobile-navbar-btn .mobile-nav-icon[name="close-outline"]
+    {
+        display: block;
+    }
+
+    .active .mobile-navbar-btn .mobile-nav-icon[name="menu-outline"]
+    {
+        display: none;
+    }
+
+}
+
+/* BELOW 560px */
+@media (max-width:35em)
+{
+    .header{
+        padding: 0 2.4rem;
+    }
+
+    .header .logo{
+        width : 60%;
+    }
+}
